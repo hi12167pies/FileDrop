@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="./script.js" defer></script>
+  <title>FileDrop</title>
+</head>
+<body>
+  <header>
+    <a class="a-no-format" href="/">
+      <h1>FileDrop</h1>
+    </a>
+  </header>
+
+  <main>
+    <h1>Upload File</h1>
+    <br>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="data" class="custom-file-upload" id="data-label">
+        Select File
+      </label>
+      <input type="file" name="data" id="data" hidden required>
+      <input type="submit" class="btn-primary" value="Upload">
+    </form>
+  </main>
+</body>
+</html>

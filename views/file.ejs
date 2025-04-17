@@ -1,0 +1,44 @@
+<%
+  function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return '0 B';
+
+    const base = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB'];
+    const unit = Math.floor(Math.log(bytes) / Math.log(base));
+    
+    const value = parseFloat(
+      (bytes / Math.pow(base, unit))
+      .toFixed(decimals)
+    )
+    return `${value} ${sizes[unit]}`
+  }
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/styles.css">
+  <title>FileDrop</title>
+</head>
+<body>
+  <header>
+    <a class="a-no-format" href="/">
+      <h1>FileDrop</h1>
+    </a>
+  </header>
+
+  <main>
+    <h1><%= meta.name %></h1>
+    <br>
+    <p>Size: <%= formatBytes(meta.size) %></p>
+    <br>
+
+    <a href="/file/<%= id %>?action=view"><input type="button" class="btn-primary" value="View File"></a>
+    <a href="/file/<%= id %>?action=download"><input type="button" class="btn-secondary" value="Download File"></a>
+    
+  </main>
+</body>
+</html>
