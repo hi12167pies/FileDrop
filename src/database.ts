@@ -1,6 +1,6 @@
 // Basic json database
 
-import { existsSync, writeFileSync } from "fs"
+import { writeFileSync } from "fs"
 import { readFileSync } from "fs"
 import path from "path"
 import { uploadDirectory } from "."
