@@ -18,12 +18,16 @@
   <main>
     <h1>Upload File</h1>
     <br>
-    <form action="/upload" method="post" enctype="multipart/form-data">
+    <form id="form" action="/upload" method="post" enctype="multipart/form-data">
       <label for="data" class="custom-file-upload" id="data-label">
         Select File
       </label>
       <input type="file" name="data" id="data" hidden required>
-      <input type="submit" class="btn-primary" value="Upload">
+      <input type="submit" id="upload-btn" class="btn-primary" value="Upload">
+      <div id="progress-holder" hidden>
+        <br>
+        <span id="progress"></span>
+      </div>
     </form>
   </main>
 </body>

@@ -36,9 +36,15 @@
     <p>Size: <%= formatBytes(meta.size) %></p>
     <br>
 
-    <a href="/file/<%= id %>?action=view"><input type="button" class="btn-primary" value="View File"></a>
-    <a href="/file/<%= id %>?action=download"><input type="button" class="btn-secondary" value="Download File"></a>
+    <a href="/file/<%= id %>?action=download"><input type="button" class="btn-primary" value="Download File"></a>
+    <a href="#" id="copyUrl"><input type="button" class="btn-secondary" value="Copy URL"></a>
     
+    <script>
+      document.getElementById("copyUrl").addEventListener("click", () => {
+        window.navigator.clipboard.writeText(location.href)
+        alert("Copied URL!")
+      })
+    </script>
   </main>
 </body>
 </html>
