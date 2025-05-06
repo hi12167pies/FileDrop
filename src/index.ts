@@ -81,6 +81,8 @@ app.post("/upload", upload.single("data"), async (req, res) => {
   res.redirect("/file/" + req.file.filename)
 })
 
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log("Webserver online at port " + process.env.PORT)
 })
+
+server.setTimeout(0)

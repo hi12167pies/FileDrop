@@ -66,9 +66,12 @@ form.addEventListener("submit", event => {
     }
   }
 
-  xhr.onerror = () => {
+  xhr.onerror = (e) => {
     progressElement.textContent = "Upload failed."
+    alert(e)
   }
+
+  xhr.timeout = 0
 
   xhr.open("POST", "/upload")
   xhr.send(formData)
