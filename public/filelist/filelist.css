@@ -1,0 +1,23 @@
+main {
+  line-height: 2rem;
+
+  height: min(calc(100% - 300px), fit-content);
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+
+td, tr, th {
+  border: 1px solid white;
+}
+
+td, th {
+  padding: 10px 20px;
+}
+
+.table {
+  line-height: normal;
+}

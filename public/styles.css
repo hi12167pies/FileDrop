@@ -3,7 +3,7 @@
   --background: #090909;
   --secondary: #272727;
   --secondary-darker: #111111;
-  --primary: #7f32bf;
+  --primary: #651f9f;
 }
 
 * {
@@ -14,10 +14,27 @@ header {
   padding: 20px;
   border: none;
   border-bottom: 2px solid var(--secondary);
+  user-select: none;
+
+  display: grid;
+  grid-template-columns: 170px repeat(3, 120px);
 }
 
 header h1 {
   display: inline-block;
+}
+
+.a-header {
+  display: inline-flex;
+  align-self: center;
+  justify-self: center;
+
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.a-header-no-left-padding {
+  margin-left: none;
 }
 
 h1 {
@@ -50,6 +67,15 @@ main {
     left: 0;
     right: 0;
     transform: translateY(-50%);
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  header a {
+    text-align: center;
   }
 }
 

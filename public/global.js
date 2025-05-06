@@ -1,3 +1,4 @@
+// Request and display the version of the application in the header
 (async function () {
   const headerVersion = document.getElementById("header-version")
 

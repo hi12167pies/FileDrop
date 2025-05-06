@@ -7,9 +7,13 @@ const progressElement = document.getElementById("progress")
 const uploadBtn = document.getElementById("upload-btn")
 const form = document.getElementById("form")
 
-/** @type { XMLHttpRequest | null } */
+/**
+ * This is the xhr request for uploading the file.
+ * @type { XMLHttpRequest | null }
+*/
 let xhr = null
 
+// This method handles showing the file that is selected in the custom file upload element
 fileElement.addEventListener("change", event => {
   /** @type { FileList } */
   const files = fileElement.files
@@ -24,6 +28,8 @@ fileElement.addEventListener("change", event => {
   fileLabel.innerText = file.name + ` (${formatBytes(file.size)})`
 })
 
+// This method handles when the form is submitted and uploading the file
+// This is in javascript to allow for progress text 
 form.addEventListener("submit", event => {
   event.preventDefault()
 
@@ -34,19 +40,24 @@ form.addEventListener("submit", event => {
     return
   }
   
+  // Disable upload button so user cannot upload again
   uploadBtn.disabled = true
+
   const file = files[0]
   
   xhr = new XMLHttpRequest()
   const formData = new FormData()
   formData.append("data", file)
 
+  // Start the timer for when the request has started, used to calculate the speed of uploading
   let startTime
   xhr.upload.addEventListener('loadstart', () => {
     startTime = Date.now()
   })
 
+  // Show the progress holder element
   progressHolder.hidden = false
+
   xhr.upload.addEventListener("progress", (uploadEvent) => {
     if (uploadEvent.lengthComputable) {
       const elapsedTime = (Date.now() - startTime) / 1000; // seconds
@@ -54,6 +65,8 @@ form.addEventListener("submit", event => {
       const bitPerSecond = bitsLoaded / elapsedTime; // bits per second
 
       const percent = (uploadEvent.loaded / uploadEvent.total) * 100
+
+      // Lots of information is provided as I think it is important
       progressElement.innerText = `Uploading: ${Math.round(percent)}% (${formatBytes(uploadEvent.loaded)} / ${formatBytes(uploadEvent.total)}, ${formatBits(bitPerSecond)})`
     }
   })
@@ -61,6 +74,8 @@ form.addEventListener("submit", event => {
   xhr.onload = () => {
     if (xhr.status === 200) {
       progressElement.textContent = "Upload complete!"
+
+      // Redirect user to newly uploaded file
       location.href = xhr.responseURL
     } else {
       progressElement.textContent = `Error: ${xhr.statusText}`
@@ -84,25 +99,3 @@ form.addEventListener("cancel", event => {
     xhr.abort()
   }
 })
-
-function formatBytes(bytes, decimals = 2) {
-  if (bytes === 0) return '0 Bytes';
-
-  const k = 1024
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-  const i = Math.floor(Math.log(bytes) / Math.log(k))
-
-  const value = bytes / Math.pow(k, i)
-  return `${parseFloat(value.toFixed(decimals))} ${sizes[i]}`
-}
-
-function formatBits(bits, decimals = 2) {
-  if (bits === 0) return '0 bps'
-
-  const k = 1000;
-  const sizes = ['bps', 'Kbps', 'Mbps', 'Gbps', 'Tbps', 'Pbps', 'Ebps', 'Zbps', 'Ybps']
-  const i = Math.floor(Math.log(bits) / Math.log(k))
-
-  const value = bits / Math.pow(k, i)
-  return `${parseFloat(value.toFixed(decimals))} ${sizes[i]}`
-}

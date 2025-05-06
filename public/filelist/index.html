@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/reset.css">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="./filelist.css">
+  <script src="/commons.js" defer></script>
+  <script src="./filelist.js" defer></script>
+  <script src="/global.js" defer></script>
+  <title>FileDrop</title>
+</head>
+<body>
+  <header>
+    <a class="a-no-format" href="/">
+      <h1>FileDrop</h1>
+      <sub id="header-version"></sub>
+    </a>
+
+    <a class="a-header" href="/">Upload</a>
+    <a class="a-header" href="/filelist/">View all files</a>
+  </header>
+
+  <main>
+    <h1>File list</h1>
+    <p>This page contains a list of all files that have been uploaded.</p>
+
+    <div id="loading">
+      <p>Loading...</p>
+    </div>
+
+    <div id="error" hidden>
+      <p id="error-content">Failed to load.</p>
+    </div>
+
+    <div id="fileTable" hidden>
+      <br>
+      <table class="table" id="table">
+        <tr>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Date Uploaded</th>
+        </tr>
+      </table>
+    </div>
+
+
+  </main>
+</body>
+</html>
