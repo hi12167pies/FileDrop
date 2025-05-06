@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync } from "fs"
 import multer from "multer"
 import path from "path"
 import { FileMeta, retrieveFileMeta, storeFileMeta } from "./database"
+import packageJson from "../package.json"
 
 config()
 
@@ -79,6 +80,12 @@ app.post("/upload", upload.single("data"), async (req, res) => {
   await storeFileMeta(req.file.filename, meta)
 
   res.redirect("/file/" + req.file.filename)
+})
+
+app.get("/version", (req, res) => {
+  res.json({
+    version: packageJson.version
+  })
 })
 
 const server = app.listen(process.env.PORT, () => {
