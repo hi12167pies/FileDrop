@@ -30,6 +30,7 @@ form.addEventListener("submit", event => {
   /** @type { FileList } */
   const files = fileElement.files
   if (files == null || files.length == 0) {
+    alert("Please select a file using the 'Select File' button.")
     return
   }
   
