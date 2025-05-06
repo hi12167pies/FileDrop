@@ -21,7 +21,7 @@ fileElement.addEventListener("change", event => {
 
   const file = files[0]
 
-  fileLabel.innerText = file.name
+  fileLabel.innerText = file.name + ` (${formatBytes(file.size)})`
 })
 
 form.addEventListener("submit", event => {
