@@ -44,11 +44,14 @@
 
     <a href="/file/<%= id %>?action=download"><input type="button" class="btn-primary" value="Download File"></a>
     <a href="#" id="copyUrl"><input type="button" class="btn-secondary" value="Copy URL"></a>
+    <a href="#" id="copyUrl2"><input type="button" class="btn-secondary" value="Copy View URL"></a>
     
     <script>
       document.getElementById("copyUrl").addEventListener("click", () => {
         window.navigator.clipboard.writeText(location.href)
-        alert("Copied URL!")
+      })
+      document.getElementById("copyUrl2").addEventListener("click", () => {
+        window.navigator.clipboard.writeText(location.origin + location.pathname + "?action=view")
       })
     </script>
   </main>

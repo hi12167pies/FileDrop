@@ -31,6 +31,11 @@ export const MULTER_MIDDLEWARE = multer({
 import { FileListRouter } from "./router/fileListRouter"
 import { FileViewRouter } from "./router/fileViewRouter"
 import { UploadRouter } from "./router/uploadRouter"
+import { PiesAuthRouter } from "./router/authRouter"
+
+if (process.env.PIES_AUTH_ENABLED == "true") {
+  app.use(PiesAuthRouter)
+}
 
 app.use(
   express.static("public"),

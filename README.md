@@ -14,6 +14,10 @@ PORT = 80
 
 # Should this disable the feature to browse all files on the server?
 DISABLE_FILE_BROWSING = false
+
+# Legit only useful for me
+PIES_AUTH_ENABLED = false
+PIES_API_KEY = 
 ```
 # Stack
 Stack / how this code is setup
